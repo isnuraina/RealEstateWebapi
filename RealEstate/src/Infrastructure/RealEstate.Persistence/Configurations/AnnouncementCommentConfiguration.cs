@@ -25,6 +25,21 @@ namespace RealEstate.Persistence.Configurations
             builder.ConfigureAuditable();
             builder.HasKey(m => m.Id);
             builder.ToTable("AnnouncementComments");
+
+
+            builder.HasOne<Announcement>()
+               .WithMany()
+               .HasPrincipalKey(m => m.Id)
+               .HasForeignKey(m => m.AnnouncementId)
+               .OnDelete(DeleteBehavior.NoAction);
+
+
+
+            builder.HasOne<AnnouncementComment>()
+             .WithMany()
+             .HasPrincipalKey(m => m.Id)
+             .HasForeignKey(m => m.ParentId)
+             .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

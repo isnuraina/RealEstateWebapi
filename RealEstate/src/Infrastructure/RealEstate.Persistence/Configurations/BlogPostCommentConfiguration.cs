@@ -22,18 +22,20 @@ namespace RealEstate.Persistence.Configurations
             builder.HasKey(m => m.Id);
             builder.ToTable("BlogPostComments");
 
+        
             builder.HasOne<BlogPost>()
-                .WithMany()
-                .HasForeignKey(m => m.BlogPostId)
-                .HasPrincipalKey(m => m.Id)
-                .OnDelete(DeleteBehavior.NoAction);
-
+              .WithMany()
+              .HasPrincipalKey(m => m.Id)
+              .HasForeignKey(m => m.BlogPostId)
+              .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne<BlogPostComment>()
                .WithMany()
-               .HasForeignKey(m => m.ParentId)
                .HasPrincipalKey(m => m.Id)
+               .HasForeignKey(m => m.ParentId)
                .OnDelete(DeleteBehavior.NoAction);
+
+
 
         }
     }

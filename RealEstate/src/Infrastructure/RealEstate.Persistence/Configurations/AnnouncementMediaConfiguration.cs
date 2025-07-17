@@ -2,11 +2,6 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using RealEstate.Domain.Entities;
 using RealEstate.Infrastructure.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RealEstate.Persistence.Configurations
 {
@@ -25,6 +20,12 @@ namespace RealEstate.Persistence.Configurations
 
             builder.HasKey(m => m.Id);
             builder.ToTable("AnnouncementMedias");
+
+            builder.HasOne<Announcement>()
+               .WithMany()
+               .HasPrincipalKey(m => m.Id)
+               .HasForeignKey(m => m.AnnouncementId)
+               .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

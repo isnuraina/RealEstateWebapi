@@ -24,7 +24,7 @@ namespace RealEstate.Persistence.Configurations
 
 
 
-            builder.HasOne<Tag>()
+                 builder.HasOne<Tag>()
                 .WithMany()
                 .HasForeignKey(m => m.TagId)
                 .HasPrincipalKey(m => m.Id)

@@ -18,6 +18,7 @@ namespace RealEstate.Persistence.Configurations
             builder.ConfigureAuditable();
             builder.HasKey(m => new { m.BlogPostId, m.CreatedBy });
             builder.ToTable("BlogPostLikes");
+
             builder.HasOne<BlogPost>()
                 .WithMany()
                 .HasForeignKey(m => m.BlogPostId)

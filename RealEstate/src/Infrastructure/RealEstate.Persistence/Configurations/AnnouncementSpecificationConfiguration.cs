@@ -17,6 +17,7 @@ namespace RealEstate.Persistence.Configurations
 
             builder.HasKey(m => m.Id);
             builder.ToTable("AnnouncementSpecifications");
+
         }
     }
 }

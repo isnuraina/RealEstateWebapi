@@ -18,6 +18,21 @@ namespace RealEstate.Persistence.Configurations
 
             builder.HasKey(m => new {m.SpecificationId,m.AnnouncementId});
             builder.ToTable("AnnouncementSpecificationValues");
+
+
+            builder.HasOne<Announcement>()
+               .WithMany()
+               .HasPrincipalKey(m => m.Id)
+               .HasForeignKey(m => m.AnnouncementId)
+               .OnDelete(DeleteBehavior.NoAction);
+
+
+
+            builder.HasOne<AnnouncementSpecification>()
+               .WithMany()
+               .HasPrincipalKey(m => m.Id)
+               .HasForeignKey(m => m.SpecificationId)
+               .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
